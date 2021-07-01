@@ -1,2 +1,14 @@
-# you-dont-know-js-yet
-📝 Study notes and practice codes for the book "You Don't Know JS Yet" 
+<p align="center">
+My Study Note
+</p>
+
+
+
+### emoji key
+* 👩‍🎨 - Creative Coding 
+* 🎨 - Cascading Style Sheets
+* 🔨 - Develop 
+* 💻 - Programming Language 
+* 📗 - Books
+
+
