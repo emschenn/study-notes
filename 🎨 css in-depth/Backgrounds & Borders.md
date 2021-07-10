@@ -214,7 +214,8 @@ border-top: 5px dashed rgba(217,68,11, 0.8);
                  30px 35px 5px 5px;}
 ```
 
-> 🌟🌟 “If values are given before and after the slash, then the values before the slash set the **horizontal radius** and the values after the slash set the **vertical radius**. If there is no slash, then the values set both radii equally.”![](https://i.imgur.com/3fTkVK9.png)
+> 🌟🌟 “If values are given before and after the slash, then the values before the slash set the **horizontal radius** and the values after the slash set the **vertical radius**. If there is no slash, then the values set both radii equally.”
+> <br/><img src="https://i.imgur.com/3fTkVK9.png" alt="drawing" width="200"/>
 
 ### `border-image`
 
