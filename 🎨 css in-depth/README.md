@@ -6,10 +6,10 @@
 - [Generated Content](Generated%20Content.md)
 - [Media Queries](Media%20Queries.md)
 - [Colors & Appearance](Colors%20&%20Appearance.md)
-- [Flexbox]
-- [Tables]
-- [Grid]
-- [Backgrounds & Borders]
+- [Flexbox](Flexbox.md)
+- [Tables](Table.md)
+- [Grid](Grid.md)
+- [Backgrounds & Borders](Backgrounds%20&%20Borders.md)
 - [Gradients]
 - [Transforms]
 - [Transitions]
