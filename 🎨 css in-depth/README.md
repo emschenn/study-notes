@@ -10,8 +10,9 @@
 - [Tables](Table.md)
 - [Grid](Grid.md)
 - [Backgrounds & Borders](Backgrounds%20&%20Borders.md)
-- [Gradients]
-- [Transforms]
-- [Transitions]
-- [Animations]
-- [Other Features]
+- [Gradients](Gradients.md)
+- [Transforms](Transforms.md)
+- [Transitions & Animations](Animation.md)
+- Other Features
+
+📔 Handout [HERE](https://estelle.github.io/cssmastery/)
