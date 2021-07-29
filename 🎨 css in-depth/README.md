@@ -13,6 +13,5 @@
 - [Gradients](Gradients.md)
 - [Transforms](Transforms.md)
 - [Transitions & Animations](Animation.md)
-- Other Features
 
 📔 Handout [HERE](https://estelle.github.io/cssmastery/)
