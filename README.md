@@ -1,16 +1,10 @@
-<h1 align="center" >
-My Study Note
-</h1>
+# My Study Notes
 
-This is a repo storing all my taken-note and follow-along course
+[Notes @Notion](https://reurl.cc/kZ9WZ3)
 
-[here](https://reurl.cc/kZ9WZ3)
+### TO-STUDY
 
-### emoji key
-
-<div style="display:flex;">
-<p style="margin: 0 10px;">🎨 Styling</p>
-<p style="margin: 0 10px;">📗 Books</p>
-<p style="margin: 0 10px;">💻 Develop / Coding</p>
-<p style="margin: 0 10px;">👩‍🎨 Creative Coding</p>
-</div>
+- [ ] deep Next.js
+- [ ] more GraphQL
+- [ ] Generative art
+- [ ] 📒 you don't know js
