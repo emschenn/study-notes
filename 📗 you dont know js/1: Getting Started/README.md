@@ -1,0 +1,6 @@
+- [Chapter 1:](./ch1.md) What Is JavaScript?
+- [Chapter 2:](./ch2.md) Surveying JS
+- [Chapter 3:](./ch3.md) Digging to the Roots of JS
+- [Chapter 4:](./ch4.md) The Bigger Picture
+- Appendix A: Exploring Further
+- Appendix B: Practice, Practice, Practice!
