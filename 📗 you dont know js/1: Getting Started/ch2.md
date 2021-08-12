@@ -2,6 +2,24 @@
 
 ### [📖](https://github.com/getify/You-Dont-Know-JS/blob/2nd-ed/get-started/ch2.md)
 
+- [Each File is a Program](#each-file-is-a-program)
+- [Values](#values)
+  - [Type Determination](#type-determination)
+- [Variables](#variables)
+  - [Declare identifiers (variables) in various scopes:](#declare-identifiers-variables-in-various-scopes)
+- [Functions](#functions)
+- [Comparisons](#comparisons)
+  - [comparisons of `NaN` and `-0`](#comparisons-of-nan-and--0)
+  - [comparisons of object values ⭐️](#️-comparisons-of-object-values)
+  - [Coercive Comparisons](#coercive-comparisons)
+- [Organize in JS](#organize-in-js)
+  - [Classes](#classes)
+    - [Inheritance / Polymorphism](#inheritance--polymorphism)
+  - [Modules](#modules)
+    - [classic Modules ⭐️ ](#️-classic-modules)
+    - [comparison w class](#comparison-w-class)
+    - [ES Modules (since ES6) ⭐️⭐️ ](#️️-es-modules-since-es6)
+
 ## Each File is a Program
 
 - Each standalone file is its own separate program.
