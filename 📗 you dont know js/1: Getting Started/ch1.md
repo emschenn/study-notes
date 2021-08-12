@@ -34,7 +34,7 @@ Because this language was originally designed to _appeal to an audience_ of most
 
 ---
 
-- JavaScript is most definitely a **multi-paradigm** language.
+- ✨ JavaScript is most definitely a **multi-paradigm** language.
   - i.e., You can write procedural, class-oriented, or FP-style code, and you can make those decisions on a line-by-line basis instead of being forced into an all-or-nothing choice.
 - ✅ JavaScript is preservation of **backwards compatibility**.
   - i.e., JS developers can write code with confidence that their code won't stop working unpredictably because a browser update is released
@@ -49,7 +49,7 @@ Because this language was originally designed to _appeal to an audience_ of most
 Since JS is **\*not** forwards-compatible\*, it means that there is a change that you will write that's valid JS, and the oldest engine that your site or application can't support.
 👉🏼 It mean that JS developers need to **take special care to address this gap.**
 
-### 🛠 Transpiling (new -> old)
+### Transpiling (new -> old)
 
 Transpiling is a contrived and community-invented term to describe **using a tool to convert the source code of a program from one form to another** _(but still as textual source code)._
 
@@ -59,7 +59,7 @@ Typically, forwards-compatibility problems related to syntax are solved by using
 
 > **REMINEDERS** 💡 Developers should focus on writing the clean, new syntax forms, and let the tools take care of producing a forwards-compatible version of that code
 
-### 🛠 Polyfill (old -> new)
+### Polyfill (old -> new)
 
 Polyfill is to provide a **definition for that missing API method that stands in** and acts as if the older environment had already had it natively defined.
 
@@ -68,7 +68,7 @@ Polyfill is to provide a **definition for that missing API method that stands in
 
 > **REMINEDERS** 💡 Since JS isn't going to stop improving, the gap will never go away. Both techniques should be embraced as a standard part of every JS project's production chain going forward.
 
-## JS: `Interpreted` script or a `Compiled` program?
+## Interpreted script or a Compiled program?
 
 The real reason it matters to have a clear picture on whether JS is interpreted or compiled **relates to the nature of how errors are handled.**
 

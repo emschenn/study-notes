@@ -1,6 +1,6 @@
 # Introduction to Serverless Function
 
-> _Notes for [Introduction to Next.js](https://frontendmasters.com/courses/serverless-functions/) taught by Jason Lengstorf at FrontendMaster._
+> _Notes for [Introduction to Serverless Function](https://frontendmasters.com/courses/serverless-functions/) taught by Jason Lengstorf at FrontendMaster._
 
 - [What does “serverless” mean?](#what-does-serverless-mean)
 - [Example using Netlify Serverless API](#example-using-netlify-serverless-api)
