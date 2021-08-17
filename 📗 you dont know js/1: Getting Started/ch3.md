@@ -293,8 +293,7 @@ var otherHomework = Object.create(homework);
 otherHomework.topic;   // "JS"
 ```
 
-<img src="
-https://github.com/getify/You-Dont-Know-JS/raw/2nd-ed/get-started/images/fig4.png" alt="book" width="150"/>
+<img src="https://github.com/getify/You-Dont-Know-JS/raw/2nd-ed/get-started/images/fig4.png" alt="book" width="150"/>
 
 👆🏼 Objects in a prototype chain
 
@@ -320,8 +319,7 @@ homework.topic;
 // "JS" -- not "Math"
 ```
 
-<img src="
-https://github.com/getify/You-Dont-Know-JS/raw/2nd-ed/get-started/images/fig5.png" alt="book" width="150"/>
+<img src="https://github.com/getify/You-Dont-Know-JS/raw/2nd-ed/get-started/images/fig5.png" alt="book" width="150"/>
 
 👆🏼 Shadowed property 'topic': The topic on `otherHomework` is "shadowing" the property of the same name on the `homework` object in the chain.
 
@@ -345,7 +343,6 @@ mathHomework.study();
 // Please study Math
 ```
 
-<img src="
-https://github.com/getify/You-Dont-Know-JS/raw/2nd-ed/get-started/images/fig6.png" alt="book" width="300"/>
+<img src="https://github.com/getify/You-Dont-Know-JS/raw/2nd-ed/get-started/images/fig6.png" alt="book" width="300"/>
 
 👆🏼 Two objects linked to a common parent
