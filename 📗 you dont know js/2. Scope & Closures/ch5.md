@@ -28,12 +28,12 @@ and also the answers to ...
 
 ❌ After the variable has been declared/created.
 
-```
+```js
 greeting();
 // Hello!
 
 function greeting() {
-    console.log("Hello!");
+  console.log("Hello!");
 }
 ```
 
@@ -49,12 +49,12 @@ function greeting() {
 
 Function hoisting only applies to formal `function` declarations (specifically those which appear outside of blocks—see "FiB" in [Chapter 6])(ch6.md), not to `function` expression assignments. Consider:
 
-```
+```js
 greeting();
 // TypeError
 
 var greeting = function greeting() {
-    console.log("Hello!");
+  console.log("Hello!");
 };
 ```
 
@@ -124,9 +124,9 @@ The "rule" of the hoisting metaphor:
 
 Thus, the hoisting story suggests that program is re-arranged by the JS engine to look like this👇🏼
 
-```
+```js
 function greeting() {
-    console.log(`Hello ${ studentName }!`);
+  console.log(`Hello ${studentName}!`);
 }
 var studentName;
 
@@ -345,13 +345,13 @@ In fact, we could sorta think about that loop in this more verbose equivalent fo
 
 💁🏻‍♂️ the `i` and `value` variables are both **declared exactly once per scope instance.**
 
-```
+```js
 for (let index in students) {
-    // this is fine
+  // this is fine
 }
 
 for (let student of students) {
-    // so is this
+  // so is this
 }
 ```
 
@@ -421,8 +421,8 @@ let studentName = "Suzy";
 
 👆🏼 ❌: "Cannot access studentName before initialization."
 
-```
-studentName = "Suzy";   // let's try to initialize it!
+```js
+studentName = "Suzy"; // let's try to initialize it!
 // ReferenceError
 
 console.log(studentName);
