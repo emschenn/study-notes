@@ -18,30 +18,30 @@ The goal here is to think about how your program is handled by the JS engine in 
 
 The color of each marble is thus determined by which color scope we find the marble originally created in.
 
-```=jsx
+```js
 // outer/global scope: RED
 
 var students = [
-    { id: 14, name: "Kyle" },
-    { id: 73, name: "Suzy" },
-    { id: 112, name: "Frank" },
-    { id: 6, name: "Sarah" }
+  { id: 14, name: "Kyle" },
+  { id: 73, name: "Suzy" },
+  { id: 112, name: "Frank" },
+  { id: 6, name: "Sarah" },
 ];
 
 function getStudentName(studentID) {
-    // function scope: BLUE
+  // function scope: BLUE
 
-    for (let student of students) {
-        // loop scope: GREEN
+  for (let student of students) {
+    // loop scope: GREEN
 
-        if (student.id == studentID) {
-            return student.name;
-        }
+    if (student.id == studentID) {
+      return student.name;
     }
+  }
 }
 
 var nextStudent = getStudentName(73);
-console.log(nextStudent);   // Suzy
+console.log(nextStudent); // Suzy
 ```
 
 - 🔴 RED (outermost global scope)
@@ -71,12 +71,12 @@ console.log(nextStudent);   // Suzy
 - **Compiler**: one of Engine's friends; handles all the dirty work of _parsing and code-generation_ (see previous section).
 - **Scope Manager**: another friend of Engine; _collects and maintains a lookup list_ of all the declared variables/identifiers, and enforces a set of rules as to how these are accessible to currently executing code.
 
-```=jsx
+```js
 var students = [
-    { id: 14, name: "Kyle" },
-    { id: 73, name: "Suzy" },
-    { id: 112, name: "Frank" },
-    { id: 6, name: "Sarah" }
+  { id: 14, name: "Kyle" },
+  { id: 73, name: "Suzy" },
+  { id: 112, name: "Frank" },
+  { id: 6, name: "Sarah" },
 ];
 ```
 
@@ -135,11 +135,11 @@ this error condition will be handled differently.
 
 👀 To perpetuate the confusion even further, JS's `typeof` operator returns the string `"undefined"` for variable references in either state:
 
-```=js
+```js
 var studentName;
-typeof studentName;     // "undefined"
+typeof studentName; // "undefined"
 
-typeof doesntExist;     // "undefined"
+typeof doesntExist; // "undefined"
 ```
 
 👆🏼 The terminology mess is confusing and terribly unfortunate. Unfortunately, JS developers just have to pay close attention to not mix up which kind of "undefined" they're dealing with! 🥲
@@ -148,10 +148,10 @@ typeof doesntExist;     // "undefined"
 
 If the variable is a **target** and **non strict-mode**, the troublesome outcome is that the global scope's Scope Manager will just create an **accidental global variable** to fulfill that target assignment!
 
-```=jsx
+```js
 function getStudentName() {
-    // assignment to an undeclared variable :(
-    nextStudent = "Suzy";
+  // assignment to an undeclared variable :(
+  nextStudent = "Suzy";
 }
 
 getStudentName();

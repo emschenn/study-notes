@@ -44,12 +44,12 @@ Consider a reference to a variable that **isn't declared in any lexically availa
 
 Having different lexical scope buckets starts to **matter more is when you have two or more variables, each in `different scopes`, with the `same lexical names`**
 
-```=jsx
+```js
 var studentName = "Suzy";
 
 function printStudent(studentName) {
-    studentName = studentName.toUpperCase();
-    console.log(studentName);
+  studentName = studentName.toUpperCase();
+  console.log(studentName);
 }
 
 printStudent("Frank");
@@ -78,18 +78,17 @@ However, It is actually possible to access a **global variable** from a scope wh
 
 ⭐️ In the **global scope**, `var` declarations and `function` declarations also **expose themselves as properties** (of the same name as the identifier) **on the global object** —essentially an object representation of the global scope.
 
-```=jsx
+```js
 var studentName = "Suzy";
 
 function printStudent(studentName) {
-    console.log(studentName);
-    console.log(window.studentName);
+  console.log(studentName);
+  console.log(window.studentName);
 }
 
 printStudent("Frank");
 // "Frank"
 // "Suzy"
-
 ```
 
 👆🏼 That's the only way to access a shadowed variable from inside a scope where the shadowing variable is present.
@@ -106,35 +105,35 @@ printStudent("Frank");
 
 This little "trick" only works for **accessing a global scope variable** (not a shadowed variable from a nested scope), and even then, only one that was declared with `var` or `function`.
 
-```=jsx
+```js
 var one = 1;
 let notOne = 2;
 const notTwo = 3;
 class notThree {}
 
-console.log(window.one);       // 1
-console.log(window.notOne);    // undefined
-console.log(window.notTwo);    // undefined
-console.log(window.notThree);  // undefined
+console.log(window.one); // 1
+console.log(window.notOne); // undefined
+console.log(window.notTwo); // undefined
+console.log(window.notThree); // undefined
 ```
 
 👆🏼 Other forms of global scope declarations do not create mirrored global object properties
 
-```=jsx
+```js
 var special = 42;
 
 function lookingFor(special) {
-    // The identifier `special` (parameter) in this
-    // scope is shadowed inside keepLooking(), and
-    // is thus inaccessible from that scope.
+  // The identifier `special` (parameter) in this
+  // scope is shadowed inside keepLooking(), and
+  // is thus inaccessible from that scope.
 
-    function keepLooking() {
-        var special = 3.141592;
-        console.log(special);
-        console.log(window.special);
-    }
+  function keepLooking() {
+    var special = 3.141592;
+    console.log(special);
+    console.log(window.special);
+  }
 
-    keepLooking();
+  keepLooking();
 }
 
 lookingFor(112358132134);
@@ -146,22 +145,22 @@ lookingFor(112358132134);
 
 ### Copying Is Not Accessing
 
-```=jsx
+```js
 var special = 42;
 
 function lookingFor(special) {
-    var another = {
-        special: special
-    };
+  var another = {
+    special: special,
+  };
 
-    function keepLooking() {
-        var special = 3.141592;
-        console.log(special);
-        console.log(another.special);  // Ooo, tricky!
-        console.log(window.special);
-    }
+  function keepLooking() {
+    var special = 3.141592;
+    console.log(special);
+    console.log(another.special); // Ooo, tricky!
+    console.log(window.special);
+  }
 
-    keepLooking();
+  keepLooking();
 }
 
 lookingFor(112358132134);
@@ -183,52 +182,51 @@ Not all combinations of declaration shadowing are allowed:
 - `let` can shadow `var`
 - but `var` cannot shadow `let`
 
-```=jsx
+```js
 function something() {
-    var special = "JavaScript";
+  var special = "JavaScript";
 
-    {
-        let special = 42;   // totally fine shadowing
+  {
+    let special = 42; // totally fine shadowing
 
-        // ..
-    }
+    // ..
+  }
 }
 
 function another() {
-    // ..
+  // ..
+
+  {
+    let special = "JavaScript";
 
     {
-        let special = "JavaScript";
+      var special = "JavaScript";
+      // ^^^ Syntax Error
 
-        {
-            var special = "JavaScript";
-            // ^^^ Syntax Error
-
-            // ..
-        }
+      // ..
     }
+  }
 }
-
 ```
 
 👆🏼 It's raised as a SyntaxError is because the `var` is basically trying to **"cross the boundary" of (or hop over) the let declaration of the same name**, which is not allowed.
 
 ⭐️ That **boundary-crossing prohibition effectively stops at each function boundary,** so this variant raises no exception:
 
-```=jsx
+```js
 function another() {
-    // ..
+  // ..
 
-    {
-        let special = "JavaScript";
+  {
+    let special = "JavaScript";
 
-        ajax("https://some.url",function callback(){
-            // totally fine shadowing
-            var special = "JavaScript";
+    ajax("https://some.url", function callback() {
+      // totally fine shadowing
+      var special = "JavaScript";
 
-            // ..
-        });
-    }
+      // ..
+    });
+  }
 }
 ```
 
@@ -241,9 +239,9 @@ function another() {
 
 #### `function` declaration
 
-```=jsx
+```js
 function askQuestion() {
-    // ..
+  // ..
 }
 ```
 
@@ -251,9 +249,9 @@ function askQuestion() {
 
 #### `function` expression
 
-```=jsx
-var askQuestion = function(){
-    // ..
+```js
+var askQuestion = function () {
+  // ..
 };
 ```
 
@@ -263,9 +261,9 @@ var askQuestion = function(){
 
 One major difference between **function declarations** and **function expressions** is 👉🏼 what happens to the **name identifier** of the function.
 
-```=jsx
+```js
 var askQuestion = function ofTheTeacher() {
-    console.log(ofTheTeacher);
+  console.log(ofTheTeacher);
 };
 
 askQuestion();
@@ -273,17 +271,16 @@ askQuestion();
 
 console.log(ofTheTeacher);
 // ReferenceError: ofTheTeacher is not defined
-
 ```
 
 👆🏼 `askQuestion` ends up in the outer scope, But `ofTheTeacher` is declared as an **identifier inside the function itself** ([Appendix A](apA.md) will explain further.)
 
-```=jsx
+```js
 var askQuestion = function ofTheTeacher() {
-    "use strict";
-    ofTheTeacher = 42;   // TypeError
+  "use strict";
+  ofTheTeacher = 42; // TypeError
 
-    //..
+  //..
 };
 
 askQuestion();
@@ -304,12 +301,12 @@ var askQuestion = function(){
 
 Arrow functions are **lexically anonymous**, **meaning they have no directly related identifier that references the function.**
 
-```=jsx
+```js
 var askQuestion = () => {
-    // ..
+  // ..
 };
 
-askQuestion.name;   // askQuestion
+askQuestion.name; // askQuestion
 ```
 
 👆🏼 The assignment to `askQuestion` creates an inferred name of "askQuestion", but that's **not** the same thing as being **non-anonymous**! ⭐️ _(still anonymous)_

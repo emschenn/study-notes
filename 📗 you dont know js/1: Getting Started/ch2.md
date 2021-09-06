@@ -55,7 +55,7 @@
 
 ### Type Determination
 
-```=js
+```js
 typeof 42;                  // "number"
 typeof "abc";               // "string"
 typeof true;                // "boolean"
@@ -71,12 +71,12 @@ typeof { "a": 1 };          // "object"
 - The **`var`** keyword declares a variable to be used in that part of the program, and optionally allows an initial assignment of a value.
 - The **`let`** allows a more limited access to the variable than `var` . This is called **"block scoping"** as opposed to regular or function scoping.
 
-```=js
+```js
 var adult = true;
 if (adult) {
-    var myName = "Kyle";
-    let age = 39;
-    console.log("Shhh, this is a secret!");
+  var myName = "Kyle";
+  let age = 39;
+  console.log("Shhh, this is a secret!");
 }
 console.log(myName); // Kyle
 console.log(age); // Error!
@@ -111,15 +111,14 @@ console.log(name)   // ''
 - But the named parameter `myName` is created only inside the function, and thus is only accessible inside that function's scope.
 - ⭐️⭐️⭐️ **_hello_ and _myName_ generally behave as `var` -declared.**
 
-```=js
+```js
 try {
-    someError();
+  someError();
 } catch (err) {
-    console.log(err);
+  console.log(err);
 }
 
-
-console.log(err)    // ReferenceError: err is not defined
+console.log(err); // ReferenceError: err is not defined
 ```
 
 - ⭐️⭐️⭐️ The `err` is a **block-scoped** variable that exists only inside the catch clause, as if it had been declared with let .
@@ -150,9 +149,9 @@ true === 1;             // false
 
 ### comparisons of `NaN` and `-0`
 
-```=js
-NaN === NaN;            // false
-0 === -0;               // true
+```js
+NaN === NaN; // false
+0 === -0; // true
 ```
 
 - In the case of `NaN` , the `===` operator lies and says that an occurrence of NaN is not equal to another `NaN`.
@@ -164,7 +163,7 @@ NaN === NaN;            // false
 
 ### ⭐️ comparisons of object values
 
-```=js
+```js
 [ 1, 2, 3 ] === [ 1, 2, 3 ];    // false
 { a: 42 } === { a: 42 }         // false
 (x => x * 2) === (x => x * 2)   // false
@@ -173,15 +172,15 @@ NaN === NaN;            // false
 - when it comes to objects, a content-aware comparison is generally referred to as "structural equality."
 - JS does not define `===` as ❌ **structural equality for object values**. Instead, `===` uses ✅ **identity equality** for object values.
 
-```=js
-var x = [ 1, 2, 3 ];
+```js
+var x = [1, 2, 3];
 // assignment is by reference-copy, so
 // y references the *same* array as x,
 // not another copy of it. var y = x;
 
-y === x;              // true
-y === [ 1, 2, 3 ];    // false
-x === [ 1, 2, 3 ];    // false
+y === x; // true
+y === [1, 2, 3]; // false
+x === [1, 2, 3]; // false
 ```
 
 - The array structure and contents don't matter in this comparison, only the **reference identity.**
@@ -191,9 +190,9 @@ x === [ 1, 2, 3 ];    // false
 
 ### Coercive Comparisons
 
-```=js
-42 == "42";             // true
-1 == true;              // true
+```js
+42 == "42"; // true
+1 == true; // true
 ```
 
 **Coercion** means a value of one type being converted to its respective
@@ -215,7 +214,7 @@ for (let i = 0; i < arr.length && arr[i] < 500; i++) {
 
 👆🏼 The `arr[i] < 500` **invokes coercion,** though, because the arr[i] values are all strings. Those comparisons thus become 1 < 500 , 10 < 500 , 100 < 500 , and 1000 < 500
 
-```=jsx
+```jsx
 var x = "10";
 var y = "9";
 
@@ -308,52 +307,52 @@ But modules have some important differences from classes:
 - The key hallmarks of a classic module are an outer function (that runs at least once), which **returns an "instance" of the module with one or more functions exposed that can operate on the module instance's internal (hidden) data.**
 - Because a module of this form is just a function, and calling it produces an **"instance"** of the module, another description for these functions is **"module factories".**
 
-```=jsx
-function Publication(title,author,pubDate) {
-    var publicAPI = {
-        print() {
-            console.log(`
-                Title: ${ title }
-                By: ${ author }
-                ${ pubDate }
+```jsx
+function Publication(title, author, pubDate) {
+  var publicAPI = {
+    print() {
+      console.log(`
+                Title: ${title}
+                By: ${author}
+                ${pubDate}
             `);
-        }
-    };
+    },
+  };
 
-    return publicAPI;
+  return publicAPI;
 }
 
 function Book(bookDetails) {
-    var pub = Publication(
-        bookDetails.title,
-        bookDetails.author,
-        bookDetails.publishedOn
-    );
+  var pub = Publication(
+    bookDetails.title,
+    bookDetails.author,
+    bookDetails.publishedOn
+  );
 
-    var publicAPI = {
-        print() {
-            pub.print();
-            console.log(`
-                Publisher: ${ bookDetails.publisher }
-                ISBN: ${ bookDetails.ISBN }
+  var publicAPI = {
+    print() {
+      pub.print();
+      console.log(`
+                Publisher: ${bookDetails.publisher}
+                ISBN: ${bookDetails.ISBN}
             `);
-        }
-    };
+    },
+  };
 
-    return publicAPI;
+  return publicAPI;
 }
 
-function BlogPost(title,author,pubDate,URL) {
-    var pub = Publication(title,author,pubDate);
+function BlogPost(title, author, pubDate, URL) {
+  var pub = Publication(title, author, pubDate);
 
-    var publicAPI = {
-        print() {
-            pub.print();
-            console.log(URL);
-        }
-    };
+  var publicAPI = {
+    print() {
+      pub.print();
+      console.log(URL);
+    },
+  };
 
-    return publicAPI;
+  return publicAPI;
 }
 ```
 
@@ -406,37 +405,37 @@ export function create(title,author,pubDate) {
 
 To import and use this module, from another ES module like `blogpost.js`:
 
-```=js
+```js
 import { create as createPub } from "publication.js";
 
-function printDetails(pub,URL) {
-    pub.print();
-    console.log(URL);
+function printDetails(pub, URL) {
+  pub.print();
+  console.log(URL);
 }
 
-export function create(title,author,pubDate,URL) {
-    var pub = createPub(title,author,pubDate);
+export function create(title, author, pubDate, URL) {
+  var pub = createPub(title, author, pubDate);
 
-    var publicAPI = {
-        print() {
-            printDetails(pub,URL);
-        }
-    };
+  var publicAPI = {
+    print() {
+      printDetails(pub, URL);
+    },
+  };
 
-    return publicAPI;
+  return publicAPI;
 }
 ```
 
 And finally, to use this module, we import into another ES module like `main.js`:
 
-```=js
+```js
 import { create as newBlogPost } from "blogpost.js";
 
 var forAgainstLet = newBlogPost(
-    "For and against let",
-    "Kyle Simpson",
-    "October 27, 2014",
-    "https://davidwalsh.name/for-and-against-let"
+  "For and against let",
+  "Kyle Simpson",
+  "October 27, 2014",
+  "https://davidwalsh.name/for-and-against-let"
 );
 
 forAgainstLet.print();

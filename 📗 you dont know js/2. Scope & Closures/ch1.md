@@ -100,7 +100,7 @@ There are three program characteristics you can observe to prove this to yoursel
 
 ### Syntax Errors from the Start
 
-```=jsx
+```js
 var greeting = "Hello";
 
 console.log(greeting);
@@ -113,16 +113,16 @@ greeting = ."Hi";
 
 ### Early Errors
 
-```=jsx
+```js
 console.log("Howdy");
 
-saySomething("Hello","Hi");
+saySomething("Hello", "Hi");
 // Uncaught SyntaxError: Duplicate parameter name not
 // allowed in this context
 
-function saySomething(greeting,greeting) {
-    "use strict";
-    console.log(greeting);
+function saySomething(greeting, greeting) {
+  "use strict";
+  console.log(greeting);
 }
 ```
 
@@ -132,14 +132,14 @@ function saySomething(greeting,greeting) {
 
 ### Hoisting
 
-```=jsx
+```js
 function saySomething() {
-    var greeting = "Hello";
-    {
-        greeting = "Howdy";  // error comes from here
-        let greeting = "Hi";
-        console.log(greeting);
-    }
+  var greeting = "Hello";
+  {
+    greeting = "Howdy"; // error comes from here
+    let greeting = "Hi";
+    console.log(greeting);
+  }
 }
 
 saySomething();
@@ -157,20 +157,20 @@ The ReferenceError here technically comes from `greeting = "Howdy"` accessing th
 
 👉🏼 How the JS engine identifies variables and determines the scopes of a program as it is compiled?
 
-```=jsx
+```js
 var students = [
-    { id: 14, name: "Kyle" },
-    { id: 73, name: "Suzy" },
-    { id: 112, name: "Frank" },
-    { id: 6, name: "Sarah" }
+  { id: 14, name: "Kyle" },
+  { id: 73, name: "Suzy" },
+  { id: 112, name: "Frank" },
+  { id: 6, name: "Sarah" },
 ];
 
 function getStudentName(studentID) {
-    for (let student of students) {
-        if (student.id == studentID) {
-            return student.name;
-        }
+  for (let student of students) {
+    if (student.id == studentID) {
+      return student.name;
     }
+  }
 }
 
 var nextStudent = getStudentName(73);
@@ -198,19 +198,19 @@ All occurrences of variables/identifiers in a program serve in one of two "roles
 students = [ // ..
 ```
 
-```=jsx
+```js
 for (let student of students) {
 ```
 
 👆🏼 That statement assigns a value to `student` for each iteration of the loop.
 
-```=jsx
-getStudentName(73)
+```js
+getStudentName(73);
 ```
 
 👆🏼 the argument `73` is assigned to the parameter `studentID`.
 
-```=jsx
+```js
 function getStudentName(studentID) {
 ```
 
@@ -235,12 +235,12 @@ In `console.log(nextStudent)`, **`console`** is a source reference, as is **`nex
 
 1. **`eval(..)`** function
 
-```=jsx
+```js
 function badIdea() {
-    eval("var oops = 'Ugh!';");
-    console.log(oops);
+  eval("var oops = 'Ugh!';");
+  console.log(oops);
 }
-badIdea();   // Ugh!
+badIdea(); // Ugh!
 ```
 
 👆🏼 If the `eval(..)` had not been present, the `oops` variable in `console.log(oops)` would not exist, and would throw a ReferenceError. But `eval(..)` modifies the scope of the `badIdea()` function at runtime.
@@ -249,11 +249,11 @@ badIdea();   // Ugh!
 
 1. **`with`** keyword
 
-```=jsx
+```js
 var badIdea = { oops: "Ugh!" };
 
 with (badIdea) {
-    console.log(oops);   // Ugh!
+  console.log(oops); // Ugh!
 }
 ```
 

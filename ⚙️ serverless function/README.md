@@ -23,7 +23,7 @@
 
 [_source_](./frontendmaster-serverless/functions/movies.js)
 
-```=js
+```js
 const { URL } = require("url");
 const fetch = require("node-fetch");
 const { query } = require("./utils/hasura");
@@ -69,7 +69,7 @@ exports.handler = async () => {
 
 [_source_](./frontendmaster-serverless/functions/add-movie.js)
 
-```=js
+```js
 const { query } = require("./utils/hasura");
 
 exports.handler = async (event) => {

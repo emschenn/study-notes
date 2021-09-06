@@ -45,17 +45,16 @@ Gatsby has conventions built in the will to make anyone looking to make a static
 
 ## Routing with Pages
 
-```=js
+```js
 index => /
 all notes => /notes
 one note => /notes/:id
 ```
 
-```=js
-pages
-  notes
-    index.jsx
-    [id].jsx
+```js
+pages;
+notes;
+index.jsx[id].jsx;
 ```
 
 ```=javascript
@@ -167,15 +166,15 @@ Next.js is a **full-stack** framework. Fullstack, as in it, has a **server**, no
 
 All we have to do is create an `api` folder in our `pages` director. The file names and paths work just like pages do. However, instead of building components in those files, we'll create API handlers.
 
-```=js
+```js
 // pages/api/data.js
 // route => /api/data
 
 export default (req, res) => {
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'application/json')
-  res.end(JSON.stringify({ message: 'hello' }))
-}
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "application/json");
+  res.end(JSON.stringify({ message: "hello" }));
+};
 ```
 
 🔍 [learn more here](https://hendrixer.github.io/nextjs-course/api-handlers)

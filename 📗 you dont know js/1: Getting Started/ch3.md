@@ -36,7 +36,7 @@
 
 1. **`for..of`**
 
-```=js
+```js
 // given an iterator of some data source:
 var it = /* .. */;
 
@@ -58,17 +58,17 @@ This operator actually has two symmetrical forms:
   - To spread an iterator, you have to have something to spread it into. There are two possibilities in JS:
     - an array
     - an argument list for a function call
-    ```=jsx
+    ```js
     // spread an iterator into an array,
     // with each iterated value occupying
     // an array element position.
-    var vals = [ ...it ];
+    var vals = [...it];
     ```
-    ```=jsx
+    ```js
     // spread an iterator into a function,
     // call with each iterated value
     // occupying an argument position.
-    doSomethingUseful( ...it );
+    doSomethingUseful(...it);
     ```
   - the iterator-spread form of `...` follows the iterator-consumption protocol (the same as the for..of loop) to retrieve all available values from an iterator and place (aka, spread) them into the receiving context (array, argument list).
 
@@ -136,7 +136,7 @@ howdy("Grant");
 
 #### Use case (?)
 
-```=jsxfunction counter(step = 1) {
+```jsfunction counter(step = 1) {
     var count = 0;
     return function increaseCount(){
         count = count + step;
@@ -159,13 +159,11 @@ incBy3();       // 9
 
 - ⭐️ Closure is most common when working with **asynchronous** code, such as with callbacks.
 
-```=js
+```js
 function getSomeData(url) {
-    ajax(url,function onResponse(resp){
-        console.log(
-            `Response (from ${ url }): ${ resp }`
-        );
-    });
+  ajax(url, function onResponse(resp) {
+    console.log(`Response (from ${url}): ${resp}`);
+  });
 }
 
 getSomeData("https://some.url/wherever");
@@ -176,11 +174,11 @@ getSomeData("https://some.url/wherever");
 
 💁🏻‍♂️ It's not necessary that the **outer scope be a function**—it usually is, but not always—j**ust that there be at least one variable in an outer scope accessed from an inner function**, for example:
 
-```=jsx
-for (let [idx,btn] of buttons.entries()) {
-    btn.addEventListener("click",function onClick(){
-       console.log(`Clicked on button (${ idx })!`);
-    });
+```js
+for (let [idx, btn] of buttons.entries()) {
+  btn.addEventListener("click", function onClick() {
+    console.log(`Clicked on button (${idx})!`);
+  });
 }
 ```
 
@@ -208,30 +206,28 @@ for (let [idx,btn] of buttons.entries()) {
 
 #### Explain w examples
 
-```=jsx
+```js
 function classroom(teacher) {
-    return function study() {
-        console.log(
-            `${ teacher } says to study ${ this.topic }`
-        );
-    };
+  return function study() {
+    console.log(`${teacher} says to study ${this.topic}`);
+  };
 }
 var assignment = classroom("Kyle");
 ```
 
 👆🏼 the inner `study()` function does reference `this`, which makes it a **`this`-aware function**. ⭐️ In other words, \*it's a function that is dependent on its **execution context.\***
 
-```=jsx
+```js
 assignment();
 // Kyle says to study undefined  -- Oops :(
 ```
 
 👆🏼 context-aware functions that are called without any context specified **default the context to the `global` object** (window in the browser). As there is no global variable named `topic` (and thus no such property on the global object), `this.topic` resolves to `undefined`.
 
-```=jsx
+```js
 var homework = {
-    topic: "JS",
-    assignment: assignment
+  topic: "JS",
+  assignment: assignment,
 };
 
 homework.assignment();
@@ -240,9 +236,9 @@ homework.assignment();
 
 👆🏼 A copy of the `assignment` function reference is set as a property on the `homework` object, and then it's called as `homework.assignment()`. That means the `this` for that function call will be the homework object.
 
-```=js
+```js
 var otherHomework = {
-    topic: "Math"
+  topic: "Math",
 };
 
 assignment.call(otherHomework);
@@ -305,7 +301,7 @@ a.toString() // TypeError: a.toString is not a function
 
 👆🏼 `Object.create(null)` creates an object that is ⭐️👉🏼 **not prototype linked anywhere**, so it's purely just a **standalone object;** in some circumstances, that may be preferable.
 
-```=jsxhomework.topic;
+```jshomework.topic;
 // "JS"
 
 otherHomework.topic;

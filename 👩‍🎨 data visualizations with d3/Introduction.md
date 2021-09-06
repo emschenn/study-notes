@@ -48,28 +48,31 @@ Takes in a selector string or DOM element and returns a D3.js selection.
 
 ![](https://i.imgur.com/imm2TQL.png)
 
-```=js
+```js
 {
   const svg = html`
-    <svg width=${rectWidth * barData.length} height=100 style='border: 1px dashed'>
+    <svg width=${
+      rectWidth * barData.length
+    } height=100 style='border: 1px dashed'>
       <rect /><rect /><rect /><rect /><rect />
-    </rect>`
+    </rect>`;
 
-  d3.select(svg).selectAll('rect')
+  d3.select(svg)
+    .selectAll("rect")
     .data(barData)
     // calculate x-position based on its index
-    .attr('x', (d, i) => i * 50)
-    .attr('y', d => 100-d)
+    .attr("x", (d, i) => i * 50)
+    .attr("y", (d) => 100 - d)
     // set height based on the bound datum
-    .attr('height', d => d)
+    .attr("height", (d) => d)
     // rest of attributes are constant values
-    .attr('width', rectWidth)
-    .attr('stroke-width', 3)
-    .attr('stroke-dasharray', '5 5')
-    .attr('stroke', 'plum')
-    .attr('fill', 'pink')
+    .attr("width", rectWidth)
+    .attr("stroke-width", 3)
+    .attr("stroke-dasharray", "5 5")
+    .attr("stroke", "plum")
+    .attr("fill", "pink");
 
-  return svg
+  return svg;
 }
 ```
 
@@ -106,64 +109,69 @@ selection.selectAll('.bar')
 
 ### Usage
 
-```=js
-const scale = d3.scaleLinear()
+```js
+const scale = d3
+  .scaleLinear()
   .domain([min, max]) // raw data
-  .range([min, max]) // visual channel
+  .range([min, max]); // visual channel
 
-scale(someValue) // returns translated value
+scale(someValue); // returns translated value
 ```
 
 To get min & max values from data:
 
-```=js
-d3.min(data, d => d[someAttr])
-d3.max(data, d => d[someAttr])
-d3.extent(data, d => d[someAttr]) // returns [min, max]
+```js
+d3.min(data, (d) => d[someAttr]);
+d3.max(data, (d) => d[someAttr]);
+d3.extent(data, (d) => d[someAttr]); // returns [min, max]
 ```
 
 #### Example
 
-```=js
-const xScale = d3.scaleBand()
+```js
+const xScale = d3
+  .scaleBand()
   .domain(d3.keys(data)) // sets domain to: ["0", "1", "2", "3", "4"]
   .range([0, width]) // [0 (left), 470px (right)]
-  .padding(0.25)
+  .padding(0.25);
 
-const max = d3.max(data, d => d) // returns 97
+const max = d3.max(data, (d) => d); // returns 97
 
-const yScale = d3.scaleLinear()
-  .domain([0, max])
-  .range([height, 0]) // [200px (bottom), 0 (top)]
+const yScale = d3.scaleLinear().domain([0, max]).range([height, 0]); // [200px (bottom), 0 (top)]
 
-d3.select(svg).selectAll('rect')
-  .data(data).enter().append('rect')
-  .attr('x', (d, i) => xScale(i))
-  .attr('y', d => yScale(d))
-  // ...set other attributes
+d3.select(svg)
+  .selectAll("rect")
+  .data(data)
+  .enter()
+  .append("rect")
+  .attr("x", (d, i) => xScale(i))
+  .attr("y", (d) => yScale(d));
+// ...set other attributes
 ```
 
 ## Group elements [📔 here](https://observablehq.com/d/f63ddec3731bee1a)
 
-```=js
-html`<g> ... </g>`
+```js
+html`<g> ... </g>`;
 
-g = svg.selectAll('g')
-    .data(flowers).enter().append('g')
+g = svg.selectAll("g").data(flowers).enter().append("g");
 ```
 
 #### Example
 
 ![](https://i.imgur.com/11EYKLE.jpg)
 
-```=js
-path = g.selectAll('path')
-  .data(d => {
-    return _.times(d.numPetals, i => {
+```js
+path = g
+  .selectAll("path")
+  .data((d) => {
+    return _.times(d.numPetals, (i) => {
       // create a copy of the parent data, and add in calculated rotation
-      return Object.assign({}, d, {rotate: i * (360 / d.numPetals)})
-    })
-  }).enter().append('path')
+      return Object.assign({}, d, { rotate: i * (360 / d.numPetals) });
+    });
+  })
+  .enter()
+  .append("path");
 ```
 
 ## DOM Manipulation & Transition [📔 here](https://observablehq.com/d/82efd3ed1e653a91)
@@ -182,11 +190,11 @@ With the **key function**, D3.js calculates the _update_, _exit_, and _enter_ se
 #### Old ways (to understand how its work🤔)
 
 1. grab the _exit_ selection with `rect.exit()`, and remove those elements from the DOM:
-   ```=js
-   rect.exit().remove()
+   ```js
+   rect.exit().remove();
    ```
 2. create new elements with the _enter_ selection:
-   ```=js
+   ```js
    const enter = rect.enter().append('rect')
      // set attributes that don't depend on data:
      .attr('width', rectWidth)
@@ -194,17 +202,18 @@ With the **key function**, D3.js calculates the _update_, _exit_, and _enter_ se
      ...
    ```
 3. **merge** the _enter_ and _update_ selection (the update selection is stored in rect since it's what `.data()` returns, no need for an accessor function). The **_enter+update_ selection together represents what should be in the DOM to match the new data**, and thus we want to set attributes that change when data changes:
-   ```=js
-   enter.merge(rect) // enter + update selections
+   ```js
+   enter
+     .merge(rect) // enter + update selections
      // set attributes that change when data changes:
-     .attr('x', (d, i) => i * rectWidth)
-     .attr('y', d => 100 - d)
-     .attr('height', d => d)
+     .attr("x", (d, i) => i * rectWidth)
+     .attr("y", (d) => 100 - d)
+     .attr("height", (d) => d);
    ```
 
 #### New ways (much convenient🪄)
 
-```=js
+```js
 d3.select(svg).selectAll('rect')
   .data(newData, d => d)
   .join('rect') // takes care of enter & exit in one
@@ -217,7 +226,7 @@ d3.select(svg).selectAll('rect')
 
 #### Example
 
-```=js
+```js
 d3.select(svg).selectAll('rect')
   .data(newData, d => d)
   .join(
@@ -238,14 +247,14 @@ d3.select(svg).selectAll('rect')
 
 ### ✨ D3.js transitions
 
-```=js
+```js
 // define the transition
-const t = d3.transition().duration(1000)
+const t = d3.transition().duration(1000);
 
 selection
   // attributes or styles to transition FROM
-  .transition(t)
-  // attributes or styles to transition TO
+  .transition(t);
+// attributes or styles to transition TO
 ```
 
 D3.js knows to animate the attributes or styles that comes **after** `.transition(t)`, and will use those as the values to transition **to**.
@@ -254,46 +263,53 @@ D3.js knows to animate the attributes or styles that comes **after** `.transitio
 
 #### Example
 
-```=js
-  function updateBars() {
-    // select svg so that transition can be localized within selection
-    const t = d3.select(svg).transition().duration(1000)
+```js
+function updateBars() {
+  // select svg so that transition can be localized within selection
+  const t = d3.select(svg).transition().duration(1000);
 
-    // randomly generate an array of data
-    const data = _.times(_.random(3, 8), i => _.random(0, 100))
+  // randomly generate an array of data
+  const data = _.times(_.random(3, 8), (i) => _.random(0, 100));
 
-    // ✨ YOUR CODE HERE
-    d3.select(svg).selectAll('rect')
-      .data(data, d => d)
-      .join(
-        enter => {
-          return enter.append('rect')
+  // ✨ YOUR CODE HERE
+  d3.select(svg)
+    .selectAll("rect")
+    .data(data, (d) => d)
+    .join(
+      (enter) => {
+        return (
+          enter
+            .append("rect")
             // attributes to transition FROM
-            .attr('height', 0)
-            .attr('y', svgHeight)
-            .attr('x', (d, i)=> i * rectWidth)
-            .attr('fill','pink')
-            .attr('stroke','plum')
-            .attr('stroke-width',2)
-        },
-        update => update,
-        exit => {
-          return exit.transition(t)
+            .attr("height", 0)
+            .attr("y", svgHeight)
+            .attr("x", (d, i) => i * rectWidth)
+            .attr("fill", "pink")
+            .attr("stroke", "plum")
+            .attr("stroke-width", 2)
+        );
+      },
+      (update) => update,
+      (exit) => {
+        return (
+          exit
+            .transition(t)
             // attributes to transition TO
-            .attr('height', 0)
-            .attr('y',svgHeight)
-        }
-      )
-      .attr('width',rectWidth)
-      .transition(t) // enter + update selection
-      // attribute to transition TO
-      .attr('x', (d, i)=> i * rectWidth)
-      .attr('height', d => d)
-      .attr('y',d => svgHeight - d)
+            .attr("height", 0)
+            .attr("y", svgHeight)
+        );
+      }
+    )
+    .attr("width", rectWidth)
+    .transition(t) // enter + update selection
+    // attribute to transition TO
+    .attr("x", (d, i) => i * rectWidth)
+    .attr("height", (d) => d)
+    .attr("y", (d) => svgHeight - d);
 
-    // update div with new data array:
-    d3.select(code).text(JSON.stringify(data).replace(/\,/g, ', '))
-  }
+  // update div with new data array:
+  d3.select(code).text(JSON.stringify(data).replace(/\,/g, ", "));
+}
 ```
 
 ## Positioning Functions [📔 here](https://observablehq.com/d/05844596efaad1c2)
@@ -310,14 +326,18 @@ D3.js knows to animate the attributes or styles that comes **after** `.transitio
 
 [D3.js force](https://github.com/d3/d3-force) layout is used to calculate positions for a node-and-link graph.
 
-```=js
-const simulation = d3.forceSimulation(nodes)
-  .force("link", d3.forceLink(links).id(d => d.id))
+```js
+const simulation = d3
+  .forceSimulation(nodes)
+  .force(
+    "link",
+    d3.forceLink(links).id((d) => d.id)
+  )
   .force("charge", d3.forceManyBody())
   .force("center", d3.forceCenter(width / 2, height / 2))
   .on("tick", () => {
     // update node and link positions
-  })
+  });
 ```
 
 1. Takes array of nodes and assigns a random x, y-position to each of them

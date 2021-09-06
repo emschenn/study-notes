@@ -56,10 +56,10 @@ console.log(yourAddress.street);
 
 ## So Many Function Forms
 
-```=jsx
-var awesomeFunction = function(coolThings) {
-    // ..
-    return amazingStuff;
+```js
+var awesomeFunction = function (coolThings) {
+  // ..
+  return amazingStuff;
 };
 ```
 

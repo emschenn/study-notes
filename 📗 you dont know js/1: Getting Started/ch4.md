@@ -30,16 +30,16 @@ Other unique parts of JS:
 - `let` / `const` declarations have a peculiar error behavior called the **"Temporal Dead Zone" (TDZ)** which results in **observable but unusable** variables.
 - **Closure** is a natural result of lexical scope when the language has functions as first-class values,
 
-```=jsx
-let a = 'Hello';
+```js
+let a = "Hello";
 
 const b = () => {
-  console.log(a)
-}
+  console.log(a);
+};
 
 const c = b;
 
-c();    // 'Hello;
+c(); // 'Hello;
 ```
 
 👆🏼 When a function makes reference to variables from an outer scope, and that function is passed around as a value and executed in other scopes, it maintains access to its original scope variables; **this is closure.**
